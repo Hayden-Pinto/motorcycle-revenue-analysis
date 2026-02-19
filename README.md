@@ -118,7 +118,8 @@ This structured output supports strategic decisions regarding product prioritisa
 motorcycle-revenue-analysis/
 │
 ├── data/
-│   └── data.csv
+│   └── dataset.csv
+│   └── dataset_cleaned.csv
 ├── sql/
 │   └── query.sql
 ├── images/
