@@ -1,25 +1,134 @@
-# motorcycle-revenue-analysis
-Motorcycle Revenue Analysis
-Objective
+# 🏍 Motorcycle Wholesale Revenue Analysis (SQL)
 
-Analyse wholesale net revenue by product line, warehouse, and month to support financial reporting.
+## 📌 Project Overview
 
-Tools Used
+This project analyses wholesale motorcycle part sales data to calculate **net revenue by product line, warehouse, and month**.
 
-SQL (aggregation + filtering)
+The objective was to provide board-level visibility into revenue performance across product categories and operational warehouses.
 
-Revenue modelling
+---
 
-Approach
+## 🧠 Business Problem
 
-Filtered wholesale transactions
+The company operates three warehouses (North, Central, West) and processes both Retail and Wholesale transactions.
 
-Calculated net revenue (total – payment fees)
+The board requested:
 
-Grouped by month and warehouse
+- Net wholesale revenue by product line  
+- Monthly revenue trends (June–August 2021)  
+- Warehouse-level performance comparison  
 
-Produced structured reporting dataset
+Only **Wholesale** transactions were included in the final analysis.
 
-Outcome
+---
 
-Delivered an executive-ready dataset for revenue tracking and segmentation.
+## 🗂 Dataset Structure
+
+The dataset includes the following key fields:
+
+- `order_number`
+- `date`
+- `warehouse`
+- `client_type`
+- `product_line`
+- `quantity`
+- `unit_price`
+- `total`
+- `payment`
+- `payment_fee`
+
+Net revenue was calculated as:
+
+```
+Net Revenue = SUM(total) - SUM(payment_fee)
+```
+
+---
+
+## 🧮 SQL Approach
+
+The analysis involved:
+
+- Filtering Wholesale transactions
+- Extracting month from the date field
+- Aggregating revenue by product_line, month, and warehouse
+- Calculating net revenue after payment fees
+- Sorting results for executive-level reporting
+
+---
+
+## 💻 SQL Query
+
+```sql
+SELECT product_line,
+CASE 
+    WHEN EXTRACT(month FROM date) = '6' THEN 'June'
+    WHEN EXTRACT(month FROM date) = '7' THEN 'July'
+    WHEN EXTRACT(month FROM date) = '8' THEN 'August'	
+END AS month,
+warehouse,
+(SUM(total) - SUM(payment_fee)) AS net_revenue
+FROM sales
+WHERE client_type = 'Wholesale'
+GROUP BY product_line, month, warehouse
+ORDER BY product_line, month, net_revenue DESC;
+```
+
+Full query available in:
+
+```
+/sql/query.sql
+```
+
+---
+
+## 📊 Sample Output
+
+![SQL Query](images/sql_query.png)
+
+![Results Table](images/results_table.png)
+
+*Sample output shown for demonstration purposes.*
+
+---
+
+## 🔎 Key Insights
+
+- Certain product lines consistently generated higher net wholesale revenue across all warehouses.
+- Revenue varied month-to-month, indicating possible seasonal or demand-driven effects.
+- Warehouse segmentation revealed performance concentration in specific operational locations.
+
+This structured output supports strategic decisions regarding product prioritisation and inventory allocation.
+
+---
+
+## 🛠 Skills Demonstrated
+
+- SQL aggregation and grouping  
+- Conditional logic using CASE statements  
+- Financial-style revenue modelling  
+- Data filtering and transformation  
+- Business-oriented analytical reporting  
+
+---
+
+## 📁 Repository Structure
+
+```
+motorcycle-revenue-analysis/
+│
+├── data/
+│   └── data.csv
+├── sql/
+│   └── query.sql
+├── images/
+│   ├── sql_query.png
+│   └── results_table.png
+└── README.md
+```
+
+---
+
+## 🚀 Outcome
+
+This project demonstrates the ability to translate a business question into structured SQL analysis and deliver executive-ready revenue insights.
