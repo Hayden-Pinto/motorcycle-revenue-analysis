@@ -108,7 +108,8 @@ This structured output supports strategic decisions regarding product prioritisa
 - Conditional logic using CASE statements  
 - Financial-style revenue modelling  
 - Data filtering and transformation  
-- Business-oriented analytical reporting  
+- Business-oriented analytical reporting
+- Project documentation via GitHub  
 
 ---
 
