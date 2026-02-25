@@ -77,16 +77,16 @@ ORDER BY product_line, month, net_revenue DESC;
 Full query available in:
 
 ```
-/sql/query.sql
+/02_sql/01_data_cleaning_query.sql
 ```
 
 ---
 
 ## 📊 Sample Output
 
-![SQL Query](images/sql_query.png)
+![01_data_cleaning_query](03_images/01_data_cleaning_query.png)
 
-![Results Table](images/results_table.png)
+![02_cleaned_data](03_images/02_cleaned_data.png)
 
 *Sample output shown for demonstration purposes.*
 
@@ -117,14 +117,14 @@ This structured output supports strategic decisions regarding product prioritisa
 ```
 motorcycle-revenue-analysis/
 │
-├── data/
-│   └── dataset.csv
-│   └── dataset_cleaned.csv
-├── sql/
-│   └── query.sql
-├── images/
-│   ├── sql_query.png
-│   └── results_table.png
+├── 01_data/
+│   └── 01_raw_dataset.csv
+│   └── 02_cleaned_data.csv
+├── 02_sql/
+│   └── 01_data_cleaning_query.sql
+├── 03_images/
+│   ├── 01_data_cleaning_query.png
+│   └── 02_cleaned_data.png
 └── README.md
 ```
 
